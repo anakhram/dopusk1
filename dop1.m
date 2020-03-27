@@ -48,13 +48,13 @@ index = 1;
 for SNR = snrArr
     N_b = 0;%кол-во ошибок на бит
     Ne_decode = 0;%кол-во ошибок декодера
+    SNRi = 10^(SNR/10);%SNR в дБ
+    sigma = sqrt(1/(2*SNRi));
     for i = 1:n
         %создание сообщения
         rnd_ind = randi(2^m,1);
         massage = modulateCodewords(rnd_ind, :);
         %канал
-        SNRi = 10^(SNR/10);%SNR в дБ
-        sigma = sqrt(1/(2*SNRi));
         b_m = massage +sigma*randn(1, length(massage));
         %демодулятор
         b = b_m > 0;%демодуляция принятого сообщения 
